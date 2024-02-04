@@ -1,0 +1,56 @@
+Vpc (virtual private cloud )
+
+vpc <---> vpc 
+
+vpc peering ? -- Establishing a bridge Connection betwwent he two vpc
+
+ 
+
+Trasnit communication (in vpc peering ? )
+
+4 types vpc peering connections? 
+
+1 Regaion based (Mumbai ) (with in the Region)
+
+vpc (same account )
+
+vpc (a) <-->  vpc (b) 
+
+
+2. Region based cross accounts (in b/w the different accounts)
+
+vpc a( offshore account ) <--->  vpc B(clinet account )
+
+
+3. Global based (in bitween the muliple Regions ) the same account 
+
+vpc (a) <-->  vpc (b)
+
+4. Global based (in b/w the different accounts)
+
+vpc a( offshore account ) <--->  vpc B(clinet account )
+
+
+
+What are the conditions to create a vpc peering ? 
+
+1. ip address Range  does not match  (cidr ) ?
+
+2. ip confict will accour 
+
+vpc (a) <-->  vpc (b)
+
+10.0.0.4       192.168.0.0
+
+
+3. 10.0.0.0/16   <---> 10.0.0.0/16
+
+
+
+
+
+
+
+
+
+ 
