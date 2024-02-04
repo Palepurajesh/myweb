@@ -1,0 +1,207 @@
+Autoscaling :
+
+Types of autoscaling (Automatically increase the servers count or server capacity 
+2 -- 2 =4 
+Horizontal scaling ( increse servers 1 by 1 sequental  )  --no downtime to this scaling 
+
+Vertical scaling (increase server range)  -- we required the down time 
+
+
+t2.medium or t3.medium 
+
+what conditions it follow 
+
+Scale up : 
+
+Increase the scalabality by resizing the computing capacity of Existing ec2 servers Ex: (Memory ,CPU ,ebs )
+
+Scale down :
+
+Reduce the number of  instances of Existing ec2 servers 
+
+Scale out 
+
+Increase the number of servers of Existing ec2 servers 
+
+how autoscaling works :
+
+1. Create gorup of ec2 instances can adding or remving from groups based on conditions 
+
+2. Enable Elasticity of scaling horizantally can adding or terminate instances 
+
+3.Identify BAD instances based on the health check of ec2 instance 
+
+4.Scaling based on aws Cloud watch metrics 
+
+5. auto scale web servers in the combination of ELB 
+
+6. No cost of Autoscaling only cost for cloudwatch metrics 
+
+
+Conditions :
+
+min -2 
+4
+max -8  
+
+Desired -At present ( first time if you launch auto scaling you can launch with not minimum less than 2 and not greater than 8 )  
+
+
+Launch configaration ( is not empty EC2 instance fully loaded applications server like ami)
+
+Policies of Autoscaling 
+
+Max threshold (increase 1 ec2 )
+
+min threshold ( decrese ec2 count )we can set the limit 
+
+Steps : 
+
+launch 1 ec2 instance 
+
+with user data script 
+
+#!/bin/bash
+yum install update -y 
+yum install httpd -y 
+service httpd start 
+systemctl enable httpd
+chkconfig httpd on
+
+echo "welcome to letsmovetocloudtraining">/var/www/html/index.html 
+
+
+Go to security group and add rules 
+
+take the ami of your ec2 server
+
+Create load balancer ( appication load ) 
+
+Dont choose server in target group 
+
+Goto launch configuration 
+
+Create lanch configuration:
+-------------------------
+
+choose your ami 
+
+instance type 
+
+security groups 
+
+create one 
+
+ssh,http (anywhere )
+
+Key pair 
+
+Existing  or new 
+
+Create launch configuration  
+
+once done 
+
+
+Note ( Launch configuration and autoscaling group shoulld be in same vpc ) 
+
+in the subent change modifu auto -assign ip4 
+
+
+Create Autoscaling group:
+------------------------ 
+
+name :
+
+launch template not (click on Launch Configuration)  -- next 
+
+choose the default vpc 
+
+and select subnets   -- next 
+
+Enable load balancing ( select )
+
+Choose (applcation laod balancer )
+
+Choose target group ( what you have created at the point of elb creation choose that )  -- next 
+
+Group size and scaling policies 
+
+Desired capacity  --2
+
+minimum capacity   --1
+
+Maximum capacity   -- 4  
+
+Scaling policies 
+
+choose ( target tracking scalling  policy )
+
+Scalling policy name ( Tracking policy)
+
+Metric type ( choose average cpu utilization ) 
+
+target value 65 %
+
+instances need one 1 server ( very imp ) only give 1 count  -- next 
+
+notifications 
+
+letsmovetocloud@gmail.com  if mail is  not coming 
+
+Create topic 
+
+Review and click on create autoscaling group 
+
+
+
+to check cpu utilization and increse cpu capacity to check 
+# follow 
+
+cat /proc/cpuinfo
+
+# yes > /dev/null &      do three to 5 times 
+
+
+# yes > /dev/null &
+
+# yes > /dev/null &
+
+# yes > /dev/null &
+
+now check performance 
+
+cat /proc/cpuinfo
+
+To stop it, execute the command  killall yes as root
+
+#killall yes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
